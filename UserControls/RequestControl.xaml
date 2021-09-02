@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="IT_Project.UserControls.RequestControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IT_Project.UserControls"
+             xmlns:vm="clr-namespace:IT_Project.ViewModels"
+             mc:Ignorable="d" 
+             Loaded="LoadUpOnStart">
+    
+    <UserControl.Resources>
+        <vm:RequestViewModel x:Key="viewModel"/>
+    </UserControl.Resources>
+    <Grid Style="{StaticResource GridStyle}" DataContext="{StaticResource viewModel}" Height="450" Width="600">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.ColumnSpan="3"  Content="Service Ticket Page" HorizontalContentAlignment="Center" Background="White"/>
+        <Label Grid.Row="2" Grid.Column="1" Content="{Binding CurrentRequest.technician_name}" HorizontalContentAlignment="Center" Background="White" Margin="0,15,0,15"/>
+        <Label Grid.Row="3" Grid.Column="1" Content="{Binding CurrentRequest.description}" HorizontalContentAlignment="center" Background="white" />
+        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding CurrentRequest.message}" TextAlignment="Left" HorizontalAlignment="Stretch" Background="White" Margin="0,15,0,165"  />
+        <TextBox x:Name="addMessage" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Background="White" Margin="0,190,0,0" ToolTip="Enter message"/>
+        <Button Style="{StaticResource BtnStyle}" Grid.Row="5" Grid.Column="1" Content="Cancel" Click="CancelBtn_Click" HorizontalAlignment="Right" Margin="0,5" Width="90" ToolTip="Cancel changes" IsCancel="True"/>
+        <Button Style="{StaticResource BtnStyle}" Grid.Row="5" Grid.Column="1" Content="Close" Click="CloseTicketBtn_Click" HorizontalAlignment="Center" Width="90" ToolTip="Set ticket status to closed"/>
+        <Button Style="{StaticResource BtnStyle}" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" Content="Save" Click="SaveBtn_Click" Margin="0,5" Width="90" ToolTip="Save message" IsDefault="True"/>
+    </Grid>
+</UserControl>
